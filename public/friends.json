@@ -6,7 +6,7 @@
     "email": "emma@example.com",
     "days_since_contact": 25,
     "status": "overdue",
-    "tags": ["college", "best friend"],
+    "tags": ["college", "aunt"],
     "bio": "Emma and I studied engineering together and still share life updates.",
     "goal": 14,
     "next_due_date": "2026-04-20"

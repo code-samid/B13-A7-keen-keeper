@@ -13,7 +13,7 @@ export default function FriendCard({ friend }) {
   return (
     <div
       onClick={() => navigate(`/friend/${friend.id}`)}
-      className="card bg-base-100 shadow hover:shadow-lg p-5 cursor-pointer transition"
+      className="card bg-base-100 shadow hover:shadow-lg p-5 cursor-pointer transition items-center text-center"
     >
       <img src={friend.picture} className="w-16 rounded-full" />
       <h2 className="font-bold mt-2">{friend.name}</h2>
