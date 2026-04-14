@@ -1,21 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import { RouterProvider } from 'react-router/dom'
-import { createBrowserRouter } from 'react-router'
-
-
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <div>Hello World</div>,
-    },
-  ]
-)
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router/Routes';
+import { TimelineProvider } from './context/TimelineContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />,
-  </StrictMode>,
-)
+    <TimelineProvider>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </TimelineProvider>
+  </StrictMode>
+);
