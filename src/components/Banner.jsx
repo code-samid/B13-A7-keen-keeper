@@ -2,7 +2,7 @@ import { FaUserPlus } from "react-icons/fa";
 
 export default function Banner() {
   return (
-    <div className="bg-gradient-to-r from-green-500 to-emerald-700 text-white rounded-2xl p-10 text-center mb-10 shadow-md">
+    <div className="bg-gradient-to-r from-green-500 to-emerald-700 text-white rounded-2xl p-10 text-center mb-10 shadow-md container mx-auto">
       
       <h1 className="text-4xl md:text-5xl font-bold mb-4">
         Keep Your Friendships Alive

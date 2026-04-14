@@ -15,7 +15,7 @@ export default function Home() {
   }).length;
 
   return (
-    <div className="p-6">
+    <div className="p-6 container mx-auto">
 
       {/* ✅ NEW BANNER */}
       <Banner />
