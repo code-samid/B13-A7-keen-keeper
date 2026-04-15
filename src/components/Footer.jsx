@@ -1,34 +1,45 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-green-900 text-white p-10 mt-auto">
-      <div className="grid md:grid-cols-3 gap-6">
-        <div>
-          <h2 className="text-xl font-bold">KeenKeeper</h2>
-          <p>Track meaningful friendships and stay connected.</p>
-        </div>
+    <footer className="bg-[#244D3F] text-white py-12 mt-auto">
+      
+      {/* Top Section */}
+      <div className="text-center max-w-3xl mx-auto px-4">
+        <h2 className="text-4xl font-bold mb-3">KeenKeeper</h2>
 
-        <div>
-          <h3 className="font-bold">Links</h3>
-          <p>Home</p>
-          <p>Timeline</p>
-          <p>Stats</p>
-        </div>
+        <p className="text-gray-200 mb-6">
+          Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
+        </p>
 
-        <div>
-          <h3 className="font-bold">Social</h3>
-          <div className="flex gap-4 text-xl">
-            <FaFacebook />
-            <FaTwitter />
+        <h3 className="font-semibold mb-4">Social Links</h3>
+
+        {/* Icons */}
+        <div className="flex justify-center gap-4">
+          <div className="bg-white text-black p-3 rounded-full">
             <FaInstagram />
-            <FaYoutube />
+          </div>
+          <div className="bg-white text-black p-3 rounded-full">
+            <FaFacebookF />
+          </div>
+          <div className="bg-white text-black p-3 rounded-full">
+            <FaTwitter />
           </div>
         </div>
       </div>
 
-      <div className="mt-6 text-sm">
-        © 2026 KeenKeeper. All rights reserved.
+      {/* Divider */}
+      <div className="border-t border-white/20 mt-10"></div>
+
+      {/* Bottom Section */}
+      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-300 mt-6 px-6">
+        <p>© 2026 KeenKeeper. All rights reserved.</p>
+
+        <div className="flex gap-6 mt-4 md:mt-0">
+          <p className="cursor-pointer">Privacy Policy</p>
+          <p className="cursor-pointer">Terms of Service</p>
+          <p className="cursor-pointer">Cookies</p>
+        </div>
       </div>
     </footer>
   );

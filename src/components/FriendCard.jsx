@@ -4,11 +4,11 @@ export default function FriendCard({ friend }) {
   const navigate = useNavigate();
 
   const badge =
-    friend.status === "overdue"
-      ? "badge-error"
-      : friend.status === "almost due"
-      ? "badge-warning"
-      : "badge-success";
+  friend.status === "overdue"
+    ? "bg-[#EF4444] text-white"
+    : friend.status === "almost due"
+    ? "bg-[#EFAD44] text-white"
+    : "bg-[#244D3F] text-white";
 
   return (
     <div

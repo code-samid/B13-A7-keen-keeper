@@ -4,56 +4,49 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 export default function Stats() {
   const { entries } = useTimeline();
 
-  const data = ["Call", "Text", "Video"].map((type) => ({
+  const data = ["Text", "Call", "Video"].map((type) => ({
     name: type,
     value: entries.filter((e) => e.type === type).length,
   }));
 
-  const total = entries.length;
-
-  // 🎨 Colors for slices
-  const COLORS = ["#22c55e", "#3b82f6", "#f59e0b"];
+  // 🎨 Match your Figma colors
+  const COLORS = ["#7C3AED", "#1F4D3F", "#2E9E66"];
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">
+    <div className="px-6 py-10">
+      
+      {/* Title (LEFT aligned) */}
+      <h1 className="text-4xl font-bold text-gray-800 mb-8">
         Friendship Analytics
       </h1>
 
-      {/* Summary Cards */}
-      <div className="grid md:grid-cols-4 gap-4 mb-10">
-        <div className="card bg-green-100 p-4 text-center">
-          Calls: {data[0].value}
-        </div>
-        <div className="card bg-blue-100 p-4 text-center">
-          Texts: {data[1].value}
-        </div>
-        <div className="card bg-yellow-100 p-4 text-center">
-          Videos: {data[2].value}
-        </div>
-        <div className="card bg-base-200 p-4 text-center">
-          Total: {total}
-        </div>
-      </div>
+      {/* White Card */}
+      <div className="bg-white rounded-xl shadow p-6">
+        
+        {/* Subheading */}
+        <h2 className="text-lg font-semibold text-green-900 mb-6">
+          By Interaction Type
+        </h2>
 
-      {/* Pie Chart */}
-      <div className="flex justify-center">
-        <PieChart width={400} height={400}>
-          <Pie
-            data={data}
-            dataKey="value"
-            outerRadius={120}
-            label
-          >
-            {data.map((_, index) => (
-              <Cell key={index} fill={COLORS[index]} />
-            ))}
-          </Pie>
+        {/* Donut Chart */}
+        <div className="flex justify-center">
+          <PieChart width={320} height={320}>
+            <Pie
+              data={data}
+              dataKey="value"
+              innerRadius={80}     // 🔥 makes it donut
+              outerRadius={110}
+              paddingAngle={5}
+            >
+              {data.map((_, index) => (
+                <Cell key={index} fill={COLORS[index]} />
+              ))}
+            </Pie>
 
-          {/* 🔥 Important */}
-          <Tooltip />
-          <Legend />
-        </PieChart>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </div>
       </div>
     </div>
   );
