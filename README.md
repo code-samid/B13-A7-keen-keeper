@@ -17,3 +17,11 @@
 - Track friendship status (Overdue, Almost Due, On Track)  
 - Quick interaction logging (Call, Text, Video) with timeline updates  
 - Visual analytics using Pie Chart  
+
+
+
+##  Live Site
+https://b13-a7-keen-keeper-xi.vercel.app/
+
+##  GitHub Repository
+https://github.com/code-samid/B13-A7-keen-keeper
