@@ -5,10 +5,10 @@ export default function FriendCard({ friend }) {
 
   const badge =
   friend.status === "overdue"
-    ? "bg-[#EF4444] text-white"
+    ? "bg-[#EF4444] text-white px-3 py-1 text-xs rounded-full"
     : friend.status === "almost due"
-    ? "bg-[#EFAD44] text-white"
-    : "bg-[#244D3F] text-white";
+    ? "bg-[#EFAD44] text-white px-3 py-1 text-xs rounded-full"
+    : "bg-[#244D3F] text-white px-3 py-1 text-xs rounded-full";
 
   return (
     <div
@@ -21,7 +21,7 @@ export default function FriendCard({ friend }) {
 
       <div className="flex gap-2 mt-2">
         {friend.tags.slice(0, 2).map(tag => (
-          <span key={tag} className="badge badge-outline">{tag}</span>
+          <span key={tag} className="badge badge-outline px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full">{tag}</span>
         ))}
       </div>
 
