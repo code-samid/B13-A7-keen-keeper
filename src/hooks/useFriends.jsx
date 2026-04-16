@@ -8,7 +8,7 @@ export default function useFriends() {
       fetch("/friends.json")
         .then(res => res.json())
         .then(data => setFriends(data));
-    }, 1500); // simulate loading
+    }, 1500); 
   }, []);
 
   return { friends };

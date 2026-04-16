@@ -21,6 +21,12 @@ export default function Home() {
 
       <SummaryCards friends={friends} interactions={thisMonth} />
 
+      <div className="border-t border-[#E2E8F0] my-10"></div>
+
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        Your Friends
+      </h2>
+
       <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6">
         {friends.map(f => (
           <FriendCard key={f.id} friend={f} />

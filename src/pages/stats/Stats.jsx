@@ -9,7 +9,7 @@ export default function Stats() {
     value: entries.filter((e) => e.type === type).length,
   }));
 
-  // 🎨 Match your Figma colors
+  
   const COLORS = ["#7C3AED", "#1F4D3F", "#2E9E66"];
 
   return (
@@ -34,7 +34,7 @@ export default function Stats() {
             <Pie
               data={data}
               dataKey="value"
-              innerRadius={80}     // 🔥 makes it donut
+              innerRadius={80}    
               outerRadius={110}
               paddingAngle={5}
             >

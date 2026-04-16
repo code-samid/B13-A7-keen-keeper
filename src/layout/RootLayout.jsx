@@ -12,7 +12,7 @@ export default function RootLayout() {
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 800); // smooth page switch loader
+    }, 800); 
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -22,7 +22,7 @@ export default function RootLayout() {
 
       <Navbar />
 
-      {/* ✅ GLOBAL LOADER */}
+      {/* GLOBAL LOADER */}
       {loading && (
         <div className="fixed inset-0 bg-white/60 flex items-center justify-center z-50">
           <span className="loading loading-spinner loading-lg text-[#244D3F]"></span>
