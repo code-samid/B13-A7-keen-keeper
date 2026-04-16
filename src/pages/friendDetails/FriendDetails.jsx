@@ -1,13 +1,15 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTimeline } from "../../context/TimelineContext";
 import { toast } from "react-toastify";
+import useFriends from "../../hooks/useFriends";
 
 export default function FriendDetails() {
-  const friends = useLoaderData();
   const { id } = useParams();
   const { addEntry } = useTimeline();
+  const { friends } = useFriends();
 
-  const friend = friends.find(f => f.id == id);
+  const friend = friends.find(f => String(f.id) === id);
+  if (!friend) return null;
 
   const handle = (type) => {
     addEntry({
@@ -19,89 +21,90 @@ export default function FriendDetails() {
     toast.success(`${type} logged with ${friend.name}!`);
   };
 
-  // ✅ Dynamic status color
   const statusColor = {
-  "overdue": "bg-[#EF4444] text-white",
-  "almost due": "bg-[#EFAD44] text-white",
-  "on-track": "bg-[#244D3F] text-white"
-};
+    "overdue": "bg-[#EF4444] text-white",
+    "almost due": "bg-[#F59E0B] text-white",
+    "on-track": "bg-[#244D3F] text-white"
+  };
 
   return (
-    <div className="grid container mx-auto md:grid-cols-3 gap-6 p-6 items-stretch">
+    <div className="container mx-auto p-6 grid md:grid-cols-3 gap-6 bg-[#F8FAFC] min-h-screen">
 
-      {/* LEFT SIDE */}
-      <div className="space-y-4 h-full flex flex-col">
+      {/* LEFT COLUMN */}
+      <div className="space-y-4">
 
         {/* Profile Card */}
-        <div className="bg-white rounded-xl p-6 shadow hover:shadow-md transition text-center flex-grow">
+        <div className="bg-white rounded-xl shadow p-6 text-center">
           <img
             src={friend.picture}
             className="w-24 h-24 mx-auto rounded-full object-cover"
           />
 
-          <h2 className="text-xl font-semibold mt-4">{friend.name}</h2>
+          <h2 className="text-lg font-semibold mt-4 text-gray-800">
+            {friend.name}
+          </h2>
 
           {/* Status */}
-          <span
-            className={`inline-block mt-2 px-3 py-1 text-sm rounded-full text-white ${statusColor[friend.status]}`}
-          >
+          <span className={`inline-block mt-2 px-3 py-1 text-xs rounded-full ${statusColor[friend.status]}`}>
             {friend.status}
           </span>
 
           {/* Tags */}
           <div className="mt-3 flex justify-center gap-2 flex-wrap">
             {friend.tags.map(tag => (
-              <span
-                key={tag}
-                className="px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full"
-              >
+              <span key={tag} className="px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full">
                 {tag}
               </span>
             ))}
           </div>
 
-          <p className="mt-4 text-gray-500 italic">"{friend.bio}"</p>
-          <p className="text-sm text-gray-400 mt-2">{friend.email}</p>
+          <p className="mt-4 text-gray-500 italic text-sm">
+            "{friend.bio}"
+          </p>
+
+          <p className="text-xs text-gray-400 mt-2">
+            Preferred: {friend.email}
+          </p>
         </div>
 
-        {/* Action Buttons (pushed to bottom) */}
-        <div className="mt-auto space-y-3">
-          <button className="w-full border rounded-lg p-3 flex items-center justify-center gap-2 hover:bg-gray-50">
+        {/* Action Buttons */}
+        <div className="space-y-3">
+          <button className="w-full bg-white border rounded-lg py-3 hover:bg-gray-50 flex justify-center gap-2">
             ⏰ Snooze 2 Weeks
           </button>
 
-          <button className="w-full border rounded-lg p-3 flex items-center justify-center gap-2 hover:bg-gray-50">
+          <button className="w-full bg-white border rounded-lg py-3 hover:bg-gray-50 flex justify-center gap-2">
             📦 Archive
           </button>
 
-          <button className="w-full border rounded-lg p-3 flex items-center justify-center gap-2 text-red-500 hover:bg-red-50">
+          <button className="w-full bg-white border rounded-lg py-3 text-red-500 hover:bg-red-50 flex justify-center gap-2">
             🗑️ Delete
           </button>
         </div>
 
       </div>
 
-      {/* RIGHT SIDE */}
-      <div className="md:col-span-2 space-y-4">
+      {/* RIGHT COLUMN */}
+      <div className="md:col-span-2 space-y-6">
 
-        {/* Stats Cards */}
+        {/* Stats */}
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white rounded-xl py-8 shadow hover:shadow-md transition text-center">
-            <h2 className="text-2xl font-bold text-green-800">
+          <div className="bg-white rounded-xl shadow py-8 text-center">
+            <h2 className="text-2xl font-bold text-[#244D3F]">
               {friend.days_since_contact}
             </h2>
             <p className="text-gray-500 text-sm">Days Since Contact</p>
           </div>
 
-          <div className="bg-white rounded-xl py-8 shadow hover:shadow-md transition text-center">
-            <h2 className="text-2xl font-bold text-green-800">
+          <div className="bg-white rounded-xl shadow py-8 text-center">
+            <h2 className="text-2xl font-bold text-[#244D3F]">
               {friend.goal}
             </h2>
             <p className="text-gray-500 text-sm">Goal (Days)</p>
           </div>
 
-          <div className="bg-white rounded-xl py-8 shadow hover:shadow-md transition text-center">
-            <h2 className="text-xl font-bold text-green-800">
+          <div className="bg-white rounded-xl shadow py-8 text-center">
+            <h2 className="text-xl font-bold text-[#244D3F]">
               {friend.next_due_date}
             </h2>
             <p className="text-gray-500 text-sm">Next Due</p>
@@ -109,9 +112,9 @@ export default function FriendDetails() {
         </div>
 
         {/* Relationship Goal */}
-        <div className="bg-white rounded-xl shadow hover:shadow-md transition p-6 flex justify-between items-center">
+        <div className="bg-white rounded-xl shadow p-6 flex justify-between items-center">
           <div>
-            <h3 className="font-semibold text-green-900 mb-2">
+            <h3 className="font-semibold text-[#244D3F] mb-2">
               Relationship Goal
             </h3>
             <p className="text-gray-600">
@@ -126,8 +129,8 @@ export default function FriendDetails() {
         </div>
 
         {/* Quick Check-In */}
-        <div className="bg-white rounded-xl shadow hover:shadow-md transition p-6">
-          <h3 className="font-semibold text-green-900 mb-4">
+        <div className="bg-white rounded-xl shadow p-6">
+          <h3 className="font-semibold text-[#244D3F] mb-4">
             Quick Check-In
           </h3>
 
@@ -137,7 +140,7 @@ export default function FriendDetails() {
               className="border rounded-lg p-4 flex flex-col items-center hover:bg-gray-50"
             >
               📞
-              <span className="mt-2">Call</span>
+              <span className="mt-2 text-sm">Call</span>
             </button>
 
             <button
@@ -145,7 +148,7 @@ export default function FriendDetails() {
               className="border rounded-lg p-4 flex flex-col items-center hover:bg-gray-50"
             >
               💬
-              <span className="mt-2">Text</span>
+              <span className="mt-2 text-sm">Text</span>
             </button>
 
             <button
@@ -153,7 +156,7 @@ export default function FriendDetails() {
               className="border rounded-lg p-4 flex flex-col items-center hover:bg-gray-50"
             >
               🎥
-              <span className="mt-2">Video</span>
+              <span className="mt-2 text-sm">Video</span>
             </button>
           </div>
         </div>
